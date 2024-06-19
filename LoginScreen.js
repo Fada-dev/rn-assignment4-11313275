@@ -1,32 +1,44 @@
-import React from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleLogin = () => {
+    navigation.navigate('Home', { name, email });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.userName}>Jobizz</Text>
       <Text style={styles.welcomeMessage}>Welcome Back 👋</Text>
       <Text style={styles.subtitle}>Let's log in. Apply to jobs!</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Name"
         placeholderTextColor="#999"
+        value={name}
+        onChangeText={setName}
       />
       <TextInput
         style={styles.input}
         placeholder="Email"
         placeholderTextColor="#999"
+        value={email}
+        onChangeText={setEmail}
       />
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Log in</Text>
       </TouchableOpacity>
-      <View style={styles.divider} />
+      <View style={styles.otherOptions}>
+        <View style={styles.divider} />
+        <Text style={styles.continueWith}>or continue with</Text>
+        <View style={styles.divider} />
+
+      </View>
+
       <View style={styles.socialContainer}>
         <TouchableOpacity>
           <View style={[styles.socialButton, styles.appleButton]}>
@@ -47,6 +59,7 @@ const LoginScreen = () => {
       <TouchableOpacity>
         <Text style={styles.registerText}>Haven't an account? Register</Text>
       </TouchableOpacity>
+
     </View>
   );
 };
@@ -73,7 +86,7 @@ const styles = StyleSheet.create({
     color: "rgba(13, 13, 38, 1)",
     width: 207,
     height: 34,
-    lineHeight: 34
+    lineHeight: 34,
   },
   subtitle: {
     fontSize: 14,
@@ -81,10 +94,9 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     lineHeight: 22,
     fontWeight: 400,
-    color: 'rgba(13, 13, 38, 1)',
+    color: "rgba(13, 13, 38, 1)",
     opacity: 0.4,
-    letterSpacing: -0.7
-    
+    letterSpacing: -0.7,
   },
   input: {
     width: "100%",
@@ -107,13 +119,27 @@ const styles = StyleSheet.create({
   loginButtonText: {
     color: "#fff",
     fontSize: 16,
-    fontWeight: "bold",
+  },
+  otherOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 16
+
   },
   divider: {
-    width: "100%",
+    width: "35%",
     height: 1,
     backgroundColor: "#ccc",
     marginVertical: 16,
+  },
+  continueWith: {
+    fontSize: 14,
+    lineHeight: 22,
+    fontWeight: 400,
+    color: "rgba(13, 13, 38, 1)",
+    opacity: 0.4,
+    letterSpacing: -0.7,
+    top: 3
   },
   socialContainer: {
     width: "100%",
@@ -146,6 +172,7 @@ const styles = StyleSheet.create({
     color: "#3b5998",
     fontSize: 16,
     marginTop: 16,
+    textAlign: 'center'
   },
 });
 
