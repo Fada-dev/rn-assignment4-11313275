@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -36,30 +36,30 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.divider} />
         <Text style={styles.continueWith}>or continue with</Text>
         <View style={styles.divider} />
-
       </View>
 
       <View style={styles.socialContainer}>
         <TouchableOpacity>
           <View style={[styles.socialButton, styles.appleButton]}>
-            <Text style={styles.socialButtonText}>Sign in with Apple</Text>
+            <Image source={require('./image/apple.png')} style={styles.socialIcon} />
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
           <View style={[styles.socialButton, styles.googleButton]}>
-            <Text style={styles.socialButtonText}>Sign in with Google</Text>
+            <Image source={require('./image/google.png')} style={styles.socialIcon} />
           </View>
         </TouchableOpacity>
         <TouchableOpacity>
           <View style={[styles.socialButton, styles.facebookButton]}>
-            <Text style={styles.socialButtonText}>Sign in with Facebook</Text>
+            <Image source={require('./image/facebook.png')} style={styles.socialIcon} />
           </View>
         </TouchableOpacity>
       </View>
       <TouchableOpacity>
-        <Text style={styles.registerText}>Haven't an account? Register</Text>
+        <Text style={styles.accountText}>
+          Haven't an account? <Text style={styles.registerText}>Register</Text>
+        </Text>
       </TouchableOpacity>
-
     </View>
   );
 };
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   userName: {
     fontSize: 22,
-    fontWeight: 600,
+    fontWeight: '600',
     lineHeight: 33,
     textAlign: "left",
     color: "rgba(53, 104, 153, 1)",
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   welcomeMessage: {
     fontSize: 24,
-    fontWeight: 600,
+    fontWeight: '600',
     marginBottom: 8,
     color: "rgba(13, 13, 38, 1)",
     width: 207,
@@ -90,10 +90,9 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 14,
-    color: "#666",
     marginBottom: 24,
     lineHeight: 22,
-    fontWeight: 400,
+    fontWeight: '400',
     color: "rgba(13, 13, 38, 1)",
     opacity: 0.4,
     letterSpacing: -0.7,
@@ -123,8 +122,7 @@ const styles = StyleSheet.create({
   otherOptions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 16
-
+    marginVertical: 16,
   },
   divider: {
     width: "35%",
@@ -135,44 +133,47 @@ const styles = StyleSheet.create({
   continueWith: {
     fontSize: 14,
     lineHeight: 22,
-    fontWeight: 400,
+    fontWeight: '400',
     color: "rgba(13, 13, 38, 1)",
     opacity: 0.4,
     letterSpacing: -0.7,
-    top: 3
+    top: 3,
   },
   socialContainer: {
-    width: "100%",
+    width: 216,
+    height: 56,
     flexDirection: "row",
     justifyContent: "space-between",
     marginVertical: 16,
+    left: 75
   },
   socialButton: {
-    width: "30%",
-    height: 48,
+    width: 56,
+    height: 56,
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
   },
-  appleButton: {
-    backgroundColor: "#000",
+  appleButton: {},
+  googleButton: {},
+  facebookButton: {},
+  socialIcon: {
+    width: 76,
+    height: 56,
   },
-  googleButton: {
-    backgroundColor: "#4285F4",
-  },
-  facebookButton: {
-    backgroundColor: "#3b5998",
-  },
-  socialButtonText: {
-    color: "#fff",
+  accountText: {
+    top: 15,
+    textAlign: 'center',
     fontSize: 14,
-    fontWeight: "bold",
+    lineHeight: 22,
+    fontWeight: '400',
+    color: "rgba(13, 13, 38, 1)",
+    opacity: 0.4,
   },
   registerText: {
     color: "#3b5998",
-    fontSize: 16,
-    marginTop: 16,
-    textAlign: 'center'
+    fontSize: 14,
+    textAlign: 'center',
   },
 });
 
