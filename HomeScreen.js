@@ -10,64 +10,115 @@ import {
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-const jobs = [
-  {
-    id: 1,
-    title: "Software Engineer",
-    company: "Facebook",
-    icon: "facebook",
-    backgroundColor: "#5386E4",
-  },
-  {
-    id: 2,
-    title: "Product Manager",
-    company: "Google",
-    icon: "google",
-    backgroundColor: "#04284A",
-  },
-  {
-    id: 3,
-    title: "Data Scientist",
-    company: "Amazon",
-    icon: "amazon",
-    backgroundColor: "#FF9900",
-  },
-  // Add more jobs as needed
-];
-
-const popularJobs = [
-  {
-    id: 1,
-    title: "UX Designer",
-    salary: "$100,000",
-    company: "Apple",
-    location: "Cupertino, CA",
-    icon: "apple",
-    backgroundColor: "white",
-  },
-  {
-    id: 2,
-    title: "Frontend Developer",
-    salary: "$90,000",
-    company: "Microsoft",
-    location: "Redmond, WA",
-    icon: "microsoft",
-    backgroundColor: "white",
-  },
-  {
-    id: 3,
-    title: "Marketing Manager",
-    salary: "$110,000",
-    company: "Tesla",
-    location: "Palo Alto, CA",
-    icon: "tesla",
-    backgroundColor: "white",
-  },
-  // Add more jobs as needed
-];
-
-function HomeScreen({ route }) {
+const HomeScreen = ({ route }) => {
   const { name, email } = route.params;
+
+  const jobs = [
+    {
+      id: 1,
+      title: "Software Engineer",
+      company: "Facebook",
+      salary: "$120,00",
+      location: "Menlo Park, CA",
+      icon: require('./image/facebook.png'),
+      backgroundColor: "#5386E4",
+    },
+    {
+      id: 2,
+      title: "Product Manager",
+      company: "Google",
+      salary: "$150,00",
+      location: "Mountain View, CA",
+      icon: require('./image/google.png'),
+      backgroundColor: "#04284A",
+    },
+    {
+      id: 3,
+      title: "Data Scientist",
+      company: "Amazon",
+      salary: "$130,00",
+      location: "Seattle, WA",
+      icon: require('./image/burger.png'),
+      backgroundColor: "#FF9900",
+    },
+    {
+      id: 4,
+      title: "Data Scientist",
+      company: "Amazon",
+      salary: "$130,00",
+      location: "Seattle, WA",
+      icon: require('./image/burger.png'),
+      backgroundColor: "black",
+    },
+    {
+      id: 5,
+      title: "Data Scientist",
+      company: "Amazon",
+      salary: "$130,00",
+      location: "Seattle, WA",
+      icon: require('./image/burger.png'),
+      backgroundColor: "pink",
+    },
+    {
+      id: 6,
+      title: "Data Scientist",
+      company: "Amazon",
+      salary: "$130,00",
+      location: "Seattle, WA",
+      icon: require('./image/burger.png'),
+      backgroundColor: "violet",
+    },
+    // Add more jobs as needed
+  ];
+
+  const popularJobs = [
+    {
+      id: 1,
+      title: "UX Designer",
+      salary: "$100,000/y",
+      company: "Apple",
+      location: "Cupertino, CA",
+      icon: require('./image/burger.png'),
+      backgroundColor: "white",
+    },
+    {
+      id: 2,
+      title: "Frontend Developer",
+      salary: "$190,000/y",
+      company: "Microsoft",
+      location: "Redmond, WA",
+      icon: require('./image/bingo.png'),
+      backgroundColor: "white",
+    },
+    {
+      id: 3,
+      title: "Marketing Manager",
+      salary: "$110,000/y",
+      company: "Tesla",
+      location: "Palo Alto, CA",
+      icon: require('./image/facebook.png'),
+      backgroundColor: "white",
+    },
+    {
+      id: 4,
+      title: "Frontend Developer",
+      salary: "$90,000/y",
+      company: "Google",
+      location: "Redmond, WA",
+      icon: require('./image/google.png'),
+      backgroundColor: "white",
+    },
+    {
+      id: 5,
+      title: "Frontend Developer",
+      salary: "$9,000/y",
+      company: "Facebook",
+      location: "Redmond, WA",
+      icon: require('./image/apple.png'),
+      backgroundColor: "white",
+    },
+    // Add more jobs as needed
+  ];
 
   return (
     <View style={styles.container}>
@@ -111,11 +162,15 @@ function HomeScreen({ route }) {
             style={[styles.jobCard, { backgroundColor: job.backgroundColor }]}
           >
             <View style={styles.iconContainer}>
-              <MaterialCommunityIcons name={job.icon} size={30} color="#000" />
+              <Image source={job.icon} style={styles.jobIcon} />
             </View>
             <View style={styles.jobInfo}>
               <Text style={styles.jobTitle}>{job.title}</Text>
               <Text style={styles.companyName}>{job.company}</Text>
+              <View style={styles.jobDetails}>
+                <Text style={styles.jobDetailsText}>{job.salary}</Text>
+                <Text style={styles.jobDetailsText}>{job.location}</Text>
+              </View>
             </View>
           </View>
         ))}
@@ -135,25 +190,24 @@ function HomeScreen({ route }) {
             ]}
           >
             <View style={styles.popularJobiconContainer}>
-              <MaterialCommunityIcons name={job.icon} size={25} color="#fff" />
+              <Image source={job.icon} style={styles.popularJobIcon} />
             </View>
             <View style={styles.popularJobInfo}>
               <View style={styles.titleSalary}>
                 <Text style={styles.popularJobTitle}>{job.title}</Text>
-                <Text style={styles.popularJobSubtitle}>{job.salary}</Text>
+                <Text style={[styles.popularJobSubtitle, { fontWeight: 'bold', color: 'black' }]}>{job.salary}</Text>
               </View>
-              <View style= {styles.nameLocation}>
+              <View style={styles.nameLocation}>
                 <Text style={styles.popularJobName}>{job.company}</Text>
                 <Text style={styles.popularJobSubtitle}>{job.location}</Text>
               </View>
             </View>
-
           </View>
         ))}
       </ScrollView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -170,7 +224,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 36,
   },
-
   Address: {
     color: "gray",
   },
@@ -194,7 +247,6 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 30,
   },
-
   searchInputContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -204,17 +256,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: "#F2F2F3",
   },
-
   searchIcon: {
     marginRight: 5,
   },
-
   searchInput: {
     height: 48,
     flex: 1,
     backgroundColor: "#F2F2F3",
   },
-
   filterButton: {
     backgroundColor: "#F2F2F3",
     height: 48,
@@ -224,36 +273,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   filterIcon: {
     width: '100%',
     height: '100%',
   },
-
   sectionTitleContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
   },
-
   sectionTitle: {
     fontSize: 16,
     color: "#0D0D26",
     fontWeight: "bold",
     lineHeight: 20.8,
   },
-
   seeAll: {
-    color: "#95969D",
+    color: "#3b5998",
     fontSize: 13,
     lineHeight: 20.8,
   },
-
   scrollContainer: {
     height: 0,
   },
-
   jobCard: {
     backgroundColor: "#fff",
     padding: 20,
@@ -268,7 +311,6 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 5,
   },
-
   iconContainer: {
     height: 46,
     width: 46,
@@ -281,6 +323,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#e0e0e0",
   },
+  jobIcon: {
+    width: 60,
+    height: 50,
+    resizeMode: 'contain',
+  },
   jobInfo: {
     flex: 1,
   },
@@ -291,15 +338,25 @@ const styles = StyleSheet.create({
   },
   companyName: {
     fontSize: 14,
-    color: "#555",
     color: "white",
   },
-
+  jobDetails: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    width: 220
+  },
+  jobDetailsText: {
+    fontSize: 14,
+    color: 'white',
+    top: 80,
+    right: 50
+  },
   verticalScrollContainer: {
     flex: 1,
   },
   popularJobCard: {
-    height: 74,
+    height: 94, 
     backgroundColor: "#fff",
     padding: 15,
     borderRadius: 10,
@@ -313,31 +370,32 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   popularJobiconContainer: {
-    backgroundColor: "#000",
     padding: 10,
     borderRadius: 30,
     marginRight: 15,
     justifyContent: "center",
     alignItems: "center",
   },
+  popularJobIcon: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
+  },
   popularJobInfo: {
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
   },
-
   titleSalary: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-
   nameLocation: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-
   popularJobTitle: {
     fontSize: 18,
     fontWeight: "bold",
